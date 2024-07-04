@@ -17,7 +17,7 @@ else:
     f = open('weekly.json')
     stock_data = json.load(f)
 
-def parse_data_stock(stock_data):
+def get_parsed_data_stock(stock_data):
     df = pd.DataFrame(stock_data)
     count = 0
     year = 2023
@@ -34,5 +34,5 @@ def parse_data_stock(stock_data):
         count += 1
     return parsed_stock_data
 
-parsed_stock_data = parse_data_stock(stock_data)
+parsed_stock_data = get_parsed_data_stock(stock_data)
 
