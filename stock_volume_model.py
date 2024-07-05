@@ -52,7 +52,6 @@ if isExistingTrainingModel == False:
 
 RNN_volume_model.summary()
 
-
 prediction_df = pd.read_csv('csv_evaluation_data.csv')
 
 prediction_data = prediction_df['week_number']
