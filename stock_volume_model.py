@@ -60,7 +60,7 @@ print(prediction_df.head())
 
 predicted_volume = RNN_volume_model.predict(prediction_data)
 
-print("******************************", predicted_volume)
+print("*******************************", predicted_volume)
 def plot_predictions(predicttors, predicted_volume):
     plt.title("Stock volume prediction")
     plt.xlabel("Week")
