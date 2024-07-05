@@ -1,7 +1,5 @@
 import pandas as pd
 import os
-import numpy as np
-import csv
 from langchain_community.utilities.alpha_vantage import AlphaVantageAPIWrapper
 
 import json
@@ -17,22 +15,27 @@ else:
     f = open('weekly.json')
     stock_data = json.load(f)
 
-def get_parsed_data_stock(stock_data):
+def generate_weekly_csv_data_stock(stock_data):
     df = pd.DataFrame(stock_data)
     count = 0
     year = 2023
-    parsed_stock_data = pd.DataFrame()
+    parsed_volume_data = pd.DataFrame()
+    i= 0
+    week_number = 1248
     for index, row in df.iterrows():
         if count > 4:
-            current_year = index[:4]
-            current_closing_price = row['Weekly Time Series']['4. close']
+            closing_price = row['Weekly Time Series']['5. volume']
             volume = row['Weekly Time Series']['5. volume']
-            if int(current_year) == year:
-                row_to_append = pd.DataFrame({'key': ['year', 'volume', 'closing_price'], 'value': [year, volume, current_closing_price]})
-                parsed_stock_data = pd.concat([parsed_stock_data, row_to_append])
+            if week_number > 0 and year <= 2023:
+                row_to_append = pd.DataFrame([{'week_number': week_number, 'volume': volume, 'closing_price': closing_price}])
+                parsed_volume_data = pd.concat([parsed_volume_data, row_to_append])
                 year = year - 1
+                week_number = week_number - 1
         count += 1
-    return parsed_stock_data
+    return parsed_volume_data
 
-parsed_stock_data = get_parsed_data_stock(stock_data)
+parsed_volume_data = generate_weekly_csv_data_stock(stock_data)
+
+parsed_volume_data.to_csv('csv_weekly_data.csv', index=False)
+
 
