@@ -40,7 +40,7 @@ def create_RNN_volume_model(hidden_units, dense_units, input_shape, activation):
 RNN_volume_model = ""
 isExistingTrainingModel = True
 try:
-    RNN_volume_model = keras.models.load_model('stock_RNN_volume_model_old.h5')
+    RNN_volume_model = keras.models.load_model('stock_RNN_volume_model.h5')
 except FileNotFoundError as err:
     isExistingTrainingModel = False
     print("FileNotFoundError:", err)
