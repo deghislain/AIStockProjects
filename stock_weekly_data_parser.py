@@ -15,7 +15,7 @@ else:
     f = open('weekly.json')
     stock_data = json.load(f)
 
-def generate_weekly_csv_data_stock(stock_data):
+def generate_weekly_csv_stock_data(stock_data):
     df = pd.DataFrame(stock_data)
     count = 0
     year = 2023
@@ -34,7 +34,7 @@ def generate_weekly_csv_data_stock(stock_data):
         count += 1
     return parsed_volume_data
 
-parsed_volume_data = generate_weekly_csv_data_stock(stock_data)
+parsed_volume_data = generate_weekly_csv_stock_data(stock_data)
 
 parsed_volume_data.to_csv('csv_weekly_data.csv', index=False)
 
