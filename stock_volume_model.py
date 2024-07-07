@@ -48,7 +48,7 @@ except FileNotFoundError as err:
 if isExistingTrainingModel == False:
     RNN_volume_model = create_RNN_volume_model(hidden_units=100, dense_units=1, input_shape=(2, 1),
                                                activation=['tanh', 'tanh'])
-    RNN_volume_model.fit(X_train_norm, y_train, validation_split=0.3, epochs=300, verbose=2)
+    RNN_volume_model.fit(X_train_norm, y_train, validation_split=0.3, epochs=400, verbose=2)
     RNN_volume_model.save("stock_RNN_volume_model.h5")
     trainScore = RNN_volume_model.evaluate(X_train_norm, y_train, verbose=0)
     print("trainScore ", trainScore)
